@@ -26,12 +26,14 @@ public class Movement : MonoBehaviour
         transform.Translate(Vector3.forward * verticalSpeed * Time.deltaTime * verticalInput);
 
         // Movimiento lateral afectado por el input
-        transform.Translate(Vector3.right * lateralSpeed * Time.deltaTime * horizontalInput);
+        // transform.Translate(Vector3.right * lateralSpeed * Time.deltaTime * horizontalInput);
+
+        transform.Rotate(Vector3.up, lateralSpeed * Time.deltaTime * horizontalInput);
 
         // Posicionar la cámara en el objeto
-        camera.transform.position = transform.position + offset;
+        // camera.transform.position = transform.position + offset;
 
-        //ROTATE EN Y
+        //if la altura es mejor a (y:-3) -> reaparecer en el principio de la carretera
 
     }
 }
