@@ -14,7 +14,13 @@ public class Movement : MonoBehaviour
 
     private float verticalInput;
     private float horizontalInput;
-    
+
+    private GameObject gameManager;
+
+    private void Start()
+    {
+        //gameManager = FindObjectOfType<GameManager>();
+    }
 
 
     void Update()
@@ -33,7 +39,11 @@ public class Movement : MonoBehaviour
         // Posicionar la cámara en el objeto
         // camera.transform.position = transform.position + offset;
 
-        //if la altura es mejor a (y:-3) -> reaparecer en el principio de la carretera
+        if (transform.position.y < -10)
+        {
+            transform.position = new Vector3(0, -0.03f, transform.position.z);
+            transform.rotation = Quaternion.identity;
+        }
 
     }
 }
