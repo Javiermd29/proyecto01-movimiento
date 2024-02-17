@@ -9,6 +9,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float speed = 10f;
     [SerializeField] private float verticalSpeed = 5f;
     [SerializeField] private float lateralSpeed = 5f;
+
     public int lifes = 5;
 
     [SerializeField] private Vector3 offset = new Vector3(0, 20, -10);
@@ -17,10 +18,12 @@ public class Movement : MonoBehaviour
     private float horizontalInput;
 
     private GameManager gameManager;
+    private UIManager uiManager;
 
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
+        uiManager = FindObjectOfType<UIManager>();
     }
 
 
@@ -45,7 +48,30 @@ public class Movement : MonoBehaviour
             transform.position = new Vector3(0, -0.03f, transform.position.z);
             transform.rotation = Quaternion.identity;
             lifes--;
+
+            UpdateLifes(lifes);
+
+        }
+
+        if (transform.position.z > 241)
+        {
+            uiManager.ShowWinPanel(lifes);
         }
 
     }
+
+    public void UpdateLifes(int newLifes)
+    {
+
+        uiManager.UpdateLifesText(lifes);
+
+        if (newLifes == 0)
+        {
+            //isGameOver = true;
+            uiManager.ShowGameOverPanel();
+
+        }
+
+    }
+
 }

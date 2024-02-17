@@ -9,8 +9,7 @@ public class GameManager : MonoBehaviour
 {
     
 
-    private bool isGameOver;
-    private int lifes = 5;
+    //private bool isGameOver;
 
     private UIManager uiManager;
     private Movement movementScript;
@@ -22,6 +21,7 @@ public class GameManager : MonoBehaviour
         movementScript = FindObjectOfType<Movement>();
 
         uiManager.HideGameOverPanel();
+        uiManager.HideWinPanel();
     }
 
 
@@ -29,17 +29,11 @@ public class GameManager : MonoBehaviour
     {
     }
 
-    public void UpdateLifes(int newLifes)
+    public void RestartGameScene()
     {
-
-        lifes += newLifes;
-        uiManager.UpdateLifesText(lifes);
-
-        if (lifes == 0)
-        {
-            isGameOver = true;
-            uiManager.ShowGameOverPanel();
-        }
-
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1;
     }
+
+
 }
