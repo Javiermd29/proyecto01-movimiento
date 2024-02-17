@@ -7,25 +7,34 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private int lifes = 5;
+    
 
     private bool isGameOver;
+    private int lifes = 5;
 
     private UIManager uiManager;
+    private Movement movementScript;
 
     void Start()
     {
+        uiManager = FindObjectOfType<UIManager>();
 
+        movementScript = FindObjectOfType<Movement>();
+
+        uiManager.HideGameOverPanel();
     }
 
 
     void Update()
     {
-        GameOver();
     }
 
-    private void GameOver()
+    public void UpdateLifes(int newLifes)
     {
+
+        lifes += newLifes;
+        uiManager.UpdateLifesText(lifes);
+
         if (lifes == 0)
         {
             isGameOver = true;
